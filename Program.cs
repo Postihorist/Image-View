@@ -19,7 +19,12 @@ namespace Image_View
             {
                 Application.Run(new Form1());
             }
+                
         }
     }
-
+    public class FixedRenderer : ToolStripSystemRenderer
+    {
+        public FixedRenderer() { }
+        protected override void OnRenderToolStripBorder(ToolStripRenderEventArgs e) { }
+    }
 }
