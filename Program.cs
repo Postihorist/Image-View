@@ -13,11 +13,11 @@ namespace Image_View
             if (args.Length > 0)
             {
                 string filePath = args[0];
-                Application.Run(new Form1(filePath));
+                Application.Run(new form(filePath));
             }
             else
             {
-                Application.Run(new Form1());
+                Application.Run(new form());
             }
                 
         }
