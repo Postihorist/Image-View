@@ -45,6 +45,7 @@
             this.toolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.toolStrip.GripMargin = new System.Windows.Forms.Padding(0);
             this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openButton,
             this.themeButton,
@@ -54,13 +55,13 @@
             this.restoreButton,
             this.sizeLabel});
             this.toolStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.toolStrip.Location = new System.Drawing.Point(0, 335);
+            this.toolStrip.Location = new System.Drawing.Point(0, 376);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Padding = new System.Windows.Forms.Padding(0);
             this.toolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.toolStrip.ShowItemToolTips = false;
-            this.toolStrip.Size = new System.Drawing.Size(473, 26);
+            this.toolStrip.Size = new System.Drawing.Size(486, 30);
             this.toolStrip.TabIndex = 2;
             // 
             // openButton
@@ -71,9 +72,9 @@
             this.openButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.openButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.openButton.Margin = new System.Windows.Forms.Padding(6, 2, 2, 3);
+            this.openButton.Margin = new System.Windows.Forms.Padding(6, 4, 2, 3);
             this.openButton.Name = "openButton";
-            this.openButton.Size = new System.Drawing.Size(61, 21);
+            this.openButton.Size = new System.Drawing.Size(61, 23);
             this.openButton.Text = "Open File";
             this.openButton.Click += new System.EventHandler(this.OpenButton_Click);
             // 
@@ -85,9 +86,9 @@
             this.themeButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.themeButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.themeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.themeButton.Margin = new System.Windows.Forms.Padding(6, 2, 2, 3);
+            this.themeButton.Margin = new System.Windows.Forms.Padding(6, 4, 2, 3);
             this.themeButton.Name = "themeButton";
-            this.themeButton.Size = new System.Drawing.Size(62, 21);
+            this.themeButton.Size = new System.Drawing.Size(62, 23);
             this.themeButton.Text = "⛭ Theme";
             this.themeButton.Click += new System.EventHandler(this.ThemeButton_Click);
             // 
@@ -99,9 +100,9 @@
             this.hideButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.hideButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.hideButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.hideButton.Margin = new System.Windows.Forms.Padding(6, 2, 2, 3);
+            this.hideButton.Margin = new System.Windows.Forms.Padding(6, 4, 2, 3);
             this.hideButton.Name = "hideButton";
-            this.hideButton.Size = new System.Drawing.Size(56, 21);
+            this.hideButton.Size = new System.Drawing.Size(56, 23);
             this.hideButton.Text = "Hide Bar";
             this.hideButton.Click += new System.EventHandler(this.HideButton_Click);
             // 
@@ -113,9 +114,9 @@
             this.rotateButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.rotateButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.rotateButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.rotateButton.Margin = new System.Windows.Forms.Padding(6, 2, 2, 3);
+            this.rotateButton.Margin = new System.Windows.Forms.Padding(6, 4, 2, 3);
             this.rotateButton.Name = "rotateButton";
-            this.rotateButton.Size = new System.Drawing.Size(58, 21);
+            this.rotateButton.Size = new System.Drawing.Size(58, 23);
             this.rotateButton.Text = "↻ Rotate";
             this.rotateButton.Click += new System.EventHandler(this.RotateButton_Click);
             // 
@@ -127,9 +128,9 @@
             this.mirrorButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.mirrorButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.mirrorButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.mirrorButton.Margin = new System.Windows.Forms.Padding(6, 2, 2, 3);
+            this.mirrorButton.Margin = new System.Windows.Forms.Padding(6, 4, 2, 3);
             this.mirrorButton.Name = "mirrorButton";
-            this.mirrorButton.Size = new System.Drawing.Size(58, 21);
+            this.mirrorButton.Size = new System.Drawing.Size(58, 23);
             this.mirrorButton.Text = "⇄ Mirror";
             this.mirrorButton.Click += new System.EventHandler(this.MirrorButton_Click);
             // 
@@ -141,9 +142,9 @@
             this.restoreButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.restoreButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.restoreButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.restoreButton.Margin = new System.Windows.Forms.Padding(6, 2, 2, 3);
+            this.restoreButton.Margin = new System.Windows.Forms.Padding(6, 4, 2, 3);
             this.restoreButton.Name = "restoreButton";
-            this.restoreButton.Size = new System.Drawing.Size(50, 21);
+            this.restoreButton.Size = new System.Drawing.Size(63, 23);
             this.restoreButton.Text = "Restore";
             this.restoreButton.Click += new System.EventHandler(this.RestoreButton_Click);
             // 
@@ -153,14 +154,15 @@
             this.sizeLabel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sizeLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.sizeLabel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.sizeLabel.Margin = new System.Windows.Forms.Padding(6, 2, 2, 3);
+            this.sizeLabel.Margin = new System.Windows.Forms.Padding(6, 4, 2, 3);
             this.sizeLabel.Name = "sizeLabel";
-            this.sizeLabel.Size = new System.Drawing.Size(68, 21);
+            this.sizeLabel.Size = new System.Drawing.Size(68, 23);
             this.sizeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // contextMenu
             // 
             this.contextMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.contextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showItem});
             this.contextMenu.Name = "contextMenuStrip1";
@@ -189,8 +191,9 @@
             this.pictureBox.ErrorImage = null;
             this.pictureBox.InitialImage = null;
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(473, 335);
+            this.pictureBox.Size = new System.Drawing.Size(486, 376);
             this.pictureBox.TabIndex = 1;
             this.pictureBox.TabStop = false;
             this.pictureBox.MouseEnter += new System.EventHandler(this.PictureBox_MouseEnter);
@@ -199,17 +202,21 @@
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.AllowDrop = true;
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.CausesValidation = false;
-            this.ClientSize = new System.Drawing.Size(473, 361);
+            this.ClientSize = new System.Drawing.Size(486, 406);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.toolStrip);
             this.DoubleBuffered = true;
+            this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MinimumSize = new System.Drawing.Size(290, 275);
             this.Name = "form";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Monocle";

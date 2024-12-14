@@ -19,7 +19,6 @@ namespace Image_View
             {
                 Application.Run(new form());
             }
-                
         }
     }
     public class FixedRenderer : ToolStripSystemRenderer

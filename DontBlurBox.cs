@@ -8,8 +8,8 @@ namespace Image_View
     {
         public int color = 0;
         private bool isDown = false;
-        public Point p1;
-        public Point p2;
+        private Point p1;
+        private Point p2;
         private Rectangle result;
         private double num;
         public DontBlurBox()
@@ -22,28 +22,25 @@ namespace Image_View
         }
         protected override void OnPaint(PaintEventArgs e)
         {
-            if (Image != null)
+            if (Image == null) return;
+            Size size = Image.Size;
+            num = Math.Min((double)Width / (double)size.Width, (double)Height / (double)size.Height);
+            result.Width = (int)((double)size.Width * num);
+            result.Height = (int)((double)size.Height * num);
+            result.X = ((Width - result.Width) / 2);
+            result.Y = ((Height - result.Height) / 2);
+            e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+            e.Graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.Half;
+            e.Graphics.DrawImage(Image, result);
+            if (isDown)
             {
-                Size size = Image.Size;
-                num = Math.Min((double)Width / (double)size.Width, (double)Height / (double)size.Height);
-                result.Width = (int)((double)size.Width * num);
-                result.Height = (int)((double)size.Height * num);
-                result.X = ((Width - result.Width) / 2);
-                result.Y = ((Height - result.Height) / 2);
-                e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
-                e.Graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.Half;
-                e.Graphics.DrawImage(Image, result);
-                if (isDown)
+                Pen pen = new Pen(Color.FromArgb(color, color, color), 2)
                 {
-                    Pen pen = new Pen(Color.FromArgb(color, color, color), 2)
-                    {
-                        DashStyle = System.Drawing.Drawing2D.DashStyle.Dash
-                    };
-                    Rectangle rectangle = new Rectangle(Math.Min(p1.X, p2.X), Math.Min(p1.Y, p2.Y), Math.Abs(p1.X - p2.X), Math.Abs(p1.Y - p2.Y));
-
-                    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(55, color, color, color)), rectangle);
-                    e.Graphics.DrawRectangle(pen, rectangle);
-                }
+                    DashStyle = System.Drawing.Drawing2D.DashStyle.Dash
+                };
+                Rectangle rectangle = new Rectangle(Math.Min(p1.X, p2.X), Math.Min(p1.Y, p2.Y), Math.Abs(p1.X - p2.X), Math.Abs(p1.Y - p2.Y));
+                e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(55, color, color, color)), rectangle);
+                e.Graphics.DrawRectangle(pen, rectangle);
             }
         }
         private void PictureBox_MouseDown(object sender, MouseEventArgs e)
@@ -104,8 +101,8 @@ namespace Image_View
                 {
                     int w = Math.Abs(p1.X - p2.X);
                     int h = Math.Abs(p1.Y - p2.Y);
-                    if (w > 20 && h > 20 && (w != result.Width || h != result.Height))
-                        Image = Crop((Bitmap)Image);
+                    if (w > 20 && h > 20)
+                        Crop();
                     else
                         Invalidate();
                 }
@@ -113,7 +110,7 @@ namespace Image_View
                     Invalidate();
             }
         }
-        private Bitmap Crop(Bitmap b)
+        private void Crop()
         {
             double X1 = p1.X;
             double Y1 = p1.Y;
@@ -135,9 +132,23 @@ namespace Image_View
             Y1 /= num;
             X2 /= num;
             Y2 /= num;
-            Rectangle rectangle = new Rectangle((int)Math.Min(X1, X2), (int)Math.Min(Y1, Y2), (int)Math.Abs(X1 - X2) + 1, (int)Math.Abs(Y1 - Y2) + 1);
-            Bitmap bmpCrop = b.Clone(rectangle, b.PixelFormat);
-            return bmpCrop;
+            int w = (int)Math.Abs(X1 - X2);
+            int h = (int)Math.Abs(Y1 - Y2);
+            if (h != Image.Height) h += 1;
+            if (w != Image.Width) w += 1;
+            Rectangle rectangle = new Rectangle((int)Math.Min(X1, X2), (int)Math.Min(Y1, Y2), w, h);
+            using (Bitmap b = new Bitmap(Image))
+            {
+                try
+                {
+                    Image = b.Clone(rectangle, b.PixelFormat);
+                }
+                catch
+                {
+                    Invalidate();
+                    return;
+                }
+            }
         }
     }
 }

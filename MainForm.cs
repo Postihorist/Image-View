@@ -37,9 +37,9 @@ namespace Image_View
                 temp = new Bitmap(Image.FromStream(fs));
                 sizeLabel.Text = $"{temp.Width} x {temp.Height}";
                 pictureBox.Image = temp;
+
             }
         }
-        
         private void Form_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
