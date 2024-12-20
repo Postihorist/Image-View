@@ -13,22 +13,17 @@
         }
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(form));
             this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.openButton = new System.Windows.Forms.ToolStripButton();
-            this.themeButton = new System.Windows.Forms.ToolStripButton();
             this.hideButton = new System.Windows.Forms.ToolStripButton();
+            this.themeButton = new System.Windows.Forms.ToolStripButton();
+            this.restoreButton = new System.Windows.Forms.ToolStripButton();
             this.rotateButton = new System.Windows.Forms.ToolStripButton();
             this.mirrorButton = new System.Windows.Forms.ToolStripButton();
-            this.restoreButton = new System.Windows.Forms.ToolStripButton();
-            this.sizeLabel = new System.Windows.Forms.ToolStripLabel();
-            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.showItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox = new Image_View.DontBlurBox();
             this.toolStrip.SuspendLayout();
-            this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,26 +37,24 @@
             this.toolStrip.AutoSize = false;
             this.toolStrip.BackColor = System.Drawing.Color.Transparent;
             this.toolStrip.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.toolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.toolStrip.GripMargin = new System.Windows.Forms.Padding(0);
             this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openButton,
-            this.themeButton,
             this.hideButton,
-            this.rotateButton,
-            this.mirrorButton,
+            this.themeButton,
             this.restoreButton,
-            this.sizeLabel});
+            this.rotateButton,
+            this.mirrorButton});
             this.toolStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.toolStrip.Location = new System.Drawing.Point(0, 376);
+            this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Padding = new System.Windows.Forms.Padding(0);
             this.toolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.toolStrip.ShowItemToolTips = false;
-            this.toolStrip.Size = new System.Drawing.Size(486, 30);
+            this.toolStrip.Size = new System.Drawing.Size(467, 30);
             this.toolStrip.TabIndex = 2;
             // 
             // openButton
@@ -74,9 +67,23 @@
             this.openButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openButton.Margin = new System.Windows.Forms.Padding(6, 4, 2, 3);
             this.openButton.Name = "openButton";
-            this.openButton.Size = new System.Drawing.Size(61, 23);
-            this.openButton.Text = "Open File";
+            this.openButton.Size = new System.Drawing.Size(40, 23);
+            this.openButton.Text = "Open";
             this.openButton.Click += new System.EventHandler(this.OpenButton_Click);
+            // 
+            // hideButton
+            // 
+            this.hideButton.AutoSize = false;
+            this.hideButton.AutoToolTip = false;
+            this.hideButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.hideButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.hideButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.hideButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.hideButton.Margin = new System.Windows.Forms.Padding(6, 4, 2, 3);
+            this.hideButton.Name = "hideButton";
+            this.hideButton.Size = new System.Drawing.Size(36, 23);
+            this.hideButton.Text = "Hide";
+            this.hideButton.Click += new System.EventHandler(this.HideButton_Click);
             // 
             // themeButton
             // 
@@ -92,19 +99,19 @@
             this.themeButton.Text = "⛭ Theme";
             this.themeButton.Click += new System.EventHandler(this.ThemeButton_Click);
             // 
-            // hideButton
+            // restoreButton
             // 
-            this.hideButton.AutoSize = false;
-            this.hideButton.AutoToolTip = false;
-            this.hideButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.hideButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.hideButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.hideButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.hideButton.Margin = new System.Windows.Forms.Padding(6, 4, 2, 3);
-            this.hideButton.Name = "hideButton";
-            this.hideButton.Size = new System.Drawing.Size(56, 23);
-            this.hideButton.Text = "Hide Bar";
-            this.hideButton.Click += new System.EventHandler(this.HideButton_Click);
+            this.restoreButton.AutoSize = false;
+            this.restoreButton.AutoToolTip = false;
+            this.restoreButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.restoreButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.restoreButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.restoreButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.restoreButton.Margin = new System.Windows.Forms.Padding(6, 4, 2, 3);
+            this.restoreButton.Name = "restoreButton";
+            this.restoreButton.Size = new System.Drawing.Size(52, 23);
+            this.restoreButton.Text = "Restore";
+            this.restoreButton.Click += new System.EventHandler(this.RestoreButton_Click);
             // 
             // rotateButton
             // 
@@ -134,68 +141,20 @@
             this.mirrorButton.Text = "⇄ Mirror";
             this.mirrorButton.Click += new System.EventHandler(this.MirrorButton_Click);
             // 
-            // restoreButton
-            // 
-            this.restoreButton.AutoSize = false;
-            this.restoreButton.AutoToolTip = false;
-            this.restoreButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.restoreButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.restoreButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.restoreButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.restoreButton.Margin = new System.Windows.Forms.Padding(6, 4, 2, 3);
-            this.restoreButton.Name = "restoreButton";
-            this.restoreButton.Size = new System.Drawing.Size(63, 23);
-            this.restoreButton.Text = "Restore";
-            this.restoreButton.Click += new System.EventHandler(this.RestoreButton_Click);
-            // 
-            // sizeLabel
-            // 
-            this.sizeLabel.AutoSize = false;
-            this.sizeLabel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.sizeLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.sizeLabel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.sizeLabel.Margin = new System.Windows.Forms.Padding(6, 4, 2, 3);
-            this.sizeLabel.Name = "sizeLabel";
-            this.sizeLabel.Size = new System.Drawing.Size(68, 23);
-            this.sizeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // contextMenu
-            // 
-            this.contextMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.contextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showItem});
-            this.contextMenu.Name = "contextMenuStrip1";
-            this.contextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.contextMenu.ShowImageMargin = false;
-            this.contextMenu.Size = new System.Drawing.Size(92, 26);
-            // 
-            // showItem
-            // 
-            this.showItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.showItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.showItem.Enabled = false;
-            this.showItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.showItem.Name = "showItem";
-            this.showItem.ShowShortcutKeys = false;
-            this.showItem.Size = new System.Drawing.Size(91, 22);
-            this.showItem.Text = "Show Bar";
-            this.showItem.Click += new System.EventHandler(this.ShowItem_Click);
-            // 
             // pictureBox
             // 
             this.pictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox.CausesValidation = false;
-            this.pictureBox.ContextMenuStrip = this.contextMenu;
             this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox.ErrorImage = null;
             this.pictureBox.InitialImage = null;
-            this.pictureBox.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox.Location = new System.Drawing.Point(0, 30);
+            this.pictureBox.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(486, 376);
+            this.pictureBox.Size = new System.Drawing.Size(467, 368);
             this.pictureBox.TabIndex = 1;
             this.pictureBox.TabStop = false;
+            this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox.MouseEnter += new System.EventHandler(this.PictureBox_MouseEnter);
             // 
             // form
@@ -208,7 +167,7 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.CausesValidation = false;
-            this.ClientSize = new System.Drawing.Size(486, 406);
+            this.ClientSize = new System.Drawing.Size(467, 398);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.toolStrip);
             this.DoubleBuffered = true;
@@ -227,7 +186,6 @@
             this.Resize += new System.EventHandler(this.Form_Resize);
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
-            this.contextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
@@ -237,14 +195,11 @@
         private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripButton openButton;
         private System.Windows.Forms.ToolStripButton themeButton;
-        private System.Windows.Forms.ToolStripButton hideButton;
-        private System.Windows.Forms.ContextMenuStrip contextMenu;
-        private System.Windows.Forms.ToolStripMenuItem showItem;
-        private System.Windows.Forms.ToolStripLabel sizeLabel;
         private System.Windows.Forms.ToolStripButton rotateButton;
         private DontBlurBox pictureBox;
         private System.Windows.Forms.ToolStripButton mirrorButton;
         private System.Windows.Forms.ToolStripButton restoreButton;
+        private System.Windows.Forms.ToolStripButton hideButton;
     }
 }
 

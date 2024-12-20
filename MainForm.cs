@@ -9,18 +9,22 @@ namespace Image_View
     public partial class form : Form
     {
         private Image temp;
+        [System.Runtime.InteropServices.DllImport("dwmapi.dll", PreserveSig = true)]
+        public static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, int[] val, int size);
         public form(string filePath = null)
         {
             InitializeComponent();
+
             using (RegistryKey key = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize"))
             {
                 if (key != null)
                 {
                     Object o = key.GetValue("AppsUseLightTheme");
-                    if (int.Parse(o.ToString()) == 1)
+                    if (int.Parse(o.ToString()) == 0)
                     {
-                        pictureBox.color = 250;
-                    }    
+                        DwmSetWindowAttribute(this.Handle, 20, new[] { 1 }, 4);
+                        pictureBox.color = 0;
+                    }
                 }
             }
             toolStrip.Renderer = new FixedRenderer();
@@ -35,7 +39,7 @@ namespace Image_View
             using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
                 temp = new Bitmap(Image.FromStream(fs));
-                sizeLabel.Text = $"{temp.Width} x {temp.Height}";
+                this.Text = $"{Path.GetFileName(path)}   {temp.Width} x {temp.Height}";
                 pictureBox.Image = temp;
 
             }
@@ -55,10 +59,8 @@ namespace Image_View
         {
             if (pictureBox.color == 0)
             {
-                ActiveForm.BackColor = Color.FromArgb(255, 25, 25, 25);
+                this.BackColor = Color.FromArgb(255, 25, 25, 25);
                 toolStrip.ForeColor = SystemColors.Window;
-                contextMenu.BackColor = Color.FromArgb(255, 46, 46, 46);
-                contextMenu.ForeColor = SystemColors.Window;
                 themeButton.Text = "⛯ Theme";
             }
         }
@@ -74,7 +76,7 @@ namespace Image_View
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     UpdateImage(openFileDialog.FileName);
-                    ActiveForm.Text = Path.GetFileName(openFileDialog.FileName);
+                    this.Text = $"{Path.GetFileName(openFileDialog.FileName)}   {temp.Width} x {temp.Height}";
                 }
             }
         }
@@ -102,28 +104,18 @@ namespace Image_View
         {
             if (pictureBox.color == 250)
             {
-                ActiveForm.BackColor = Color.FromArgb(255, 25, 25, 25);
+                this.BackColor = Color.FromArgb(255, 25, 25, 25);
                 toolStrip.ForeColor = SystemColors.Window;
-                contextMenu.BackColor = Color.FromArgb(255, 46, 46, 46);
-                contextMenu.ForeColor = SystemColors.Window;
                 themeButton.Text = "⛯ Theme";
                 pictureBox.color = 0;
             }
             else
             {
-                ActiveForm.BackColor = SystemColors.Window;
+                this.BackColor = SystemColors.Window;
                 toolStrip.ForeColor = SystemColors.ControlText;
-                contextMenu.BackColor = SystemColors.Control;
-                contextMenu.ForeColor = SystemColors.ControlText;
                 themeButton.Text = "⛭ Theme";
                 pictureBox.color = 250;
             }
-        }
-        private void ShowItem_Click(object sender, EventArgs e)
-        {
-            toolStrip.Visible = true;
-            pictureBox.Refresh();
-            showItem.Enabled = false;
         }
         private void HideButton_Click(object sender, EventArgs e)
         {
@@ -131,7 +123,6 @@ namespace Image_View
             {
                 toolStrip.Visible = false;
                 pictureBox.Refresh();
-                showItem.Enabled = true;
             }
         }
         private void Form_Resize(object sender, EventArgs e)
@@ -147,6 +138,15 @@ namespace Image_View
         {
             if (e.KeyChar >= 17 && e.KeyChar <= 90)
                 pictureBox.Image = temp;
+        }
+        private void pictureBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (pictureBox.Image == null) return;
+            if (e.Button == MouseButtons.Right)
+            {
+                toolStrip.Visible = true;
+                pictureBox.Invalidate();
+            }
         }
     }
 }

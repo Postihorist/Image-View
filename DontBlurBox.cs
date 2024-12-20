@@ -6,7 +6,7 @@ namespace Image_View
 {
     public partial class DontBlurBox : PictureBox
     {
-        public int color = 0;
+        public int color = 250;
         private bool isDown = false;
         private Point p1;
         private Point p2;
@@ -29,8 +29,11 @@ namespace Image_View
             result.Height = (int)((double)size.Height * num);
             result.X = ((Width - result.Width) / 2);
             result.Y = ((Height - result.Height) / 2);
-            e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
-            e.Graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.Half;
+            if (Image.Width < 512 || Image.Height < 512)
+            {
+                e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+                e.Graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.Half;
+            }
             e.Graphics.DrawImage(Image, result);
             if (isDown)
             {
@@ -66,7 +69,9 @@ namespace Image_View
                     p1.Y = e.Y;
                 isDown = true;
                 Cursor.Current = Cursors.Hand;
-            }
+            } 
+            else 
+                isDown = false;
         }
         private void PictureBox_MouseMove(object sender, MouseEventArgs e)
         {
